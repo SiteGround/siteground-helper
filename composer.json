@@ -1,0 +1,9 @@
+{
+    "name": "siteground/siteground-notifications",
+    "autoload": {
+        "psr-4": {
+            "SiteGround_Notifications\\": "src/"
+        }
+    },
+    "require": {}
+}
