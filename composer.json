@@ -1,8 +1,8 @@
 {
-    "name": "siteground/siteground-notifications",
+    "name": "siteground/siteground-helper",
     "autoload": {
         "psr-4": {
-            "SiteGround_Notifications\\": "src/"
+            "SiteGround_Helper\\": "src/"
         }
     },
     "require": {}
