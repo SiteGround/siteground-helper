@@ -190,6 +190,6 @@ class Helper_Service {
 	 * @return boolean True/False.
 	 */
 	public static function is_siteground() {
-		return (int) ( file_exists( '/etc/yum.repos.d/baseos.repo' ) && file_exists( '/Z' ) );
+		return (int) ( @file_exists( '/etc/yum.repos.d/baseos.repo' ) && @file_exists( '/Z' ) );
 	}
 }
