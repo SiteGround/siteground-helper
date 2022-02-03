@@ -166,8 +166,11 @@ class Helper_Service {
 		$core = get_core_updates();
 
 		// Check for core.
-		if ( 'latest' !== $core[0]->response ) {
-			return true;
+		if (
+			'latest' === $core[0]->response ||
+			'development' === $core[0]->response
+		) {
+			return false;
 		}
 
 		// Check for translation updates.
