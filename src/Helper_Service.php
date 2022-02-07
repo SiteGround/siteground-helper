@@ -171,11 +171,8 @@ class Helper_Service {
 		$core = get_core_updates();
 
 		// Check for core.
-		if (
-			'latest' === $core[0]->response ||
-			'development' === $core[0]->response
-		) {
-			return false;
+		if ( 'upgrade' === $core[0]->response ) {
+			return true;
 		}
 
 		// Bail if we do not have any updates available.
