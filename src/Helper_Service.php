@@ -163,6 +163,11 @@ class Helper_Service {
 			return true;
 		}
 
+		// Check for translation updates.
+		if ( ! empty( wp_get_translation_updates() ) ) {
+			return true;
+		}
+
 		$core = get_core_updates();
 
 		// Check for core.
@@ -171,11 +176,6 @@ class Helper_Service {
 			'development' === $core[0]->response
 		) {
 			return false;
-		}
-
-		// Check for translation updates.
-		if ( ! empty( wp_get_translation_updates() ) ) {
-			return true;
 		}
 
 		// Bail if we do not have any updates available.
