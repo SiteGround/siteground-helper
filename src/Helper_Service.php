@@ -163,18 +163,15 @@ class Helper_Service {
 			return true;
 		}
 
+		// Check for translation updates.
+		if ( ! empty( wp_get_translation_updates() ) ) {
+			return true;
+		}
+
 		$core = get_core_updates();
 
 		// Check for core.
-		if (
-			'latest' === $core[0]->response ||
-			'development' === $core[0]->response
-		) {
-			return false;
-		}
-
-		// Check for translation updates.
-		if ( ! empty( wp_get_translation_updates() ) ) {
+		if ( 'upgrade' === $core[0]->response ) {
 			return true;
 		}
 
