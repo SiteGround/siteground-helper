@@ -187,6 +187,11 @@ class Helper_Service {
 	 * @return boolean True/False.
 	 */
 	public static function is_siteground() {
+		// Bail if open_basedir restrictions are set, and we are not able to check certain directories.
+		if ( ! empty( ini_get( 'open_basedir' ) ) ){
+			return 0;
+		}
+
 		return (int) ( @file_exists( '/etc/yum.repos.d/baseos.repo' ) && @file_exists( '/Z' ) );
 	}
 }
