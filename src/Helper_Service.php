@@ -171,7 +171,7 @@ class Helper_Service {
 		$core = get_core_updates();
 
 		// Check for core.
-		if ( 'upgrade' === $core[0]->response ) {
+		if ( false !== $core && 'upgrade' === $core[0]->response ) {
 			return true;
 		}
 
