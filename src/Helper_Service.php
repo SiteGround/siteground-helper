@@ -9,7 +9,6 @@ namespace SiteGround_Helper;
  * SiteGround_Helper_Service class.
  */
 class Helper_Service {
-
 	/**
 	 * Load the global wp_filesystem.
 	 *
@@ -188,10 +187,53 @@ class Helper_Service {
 	 */
 	public static function is_siteground() {
 		// Bail if open_basedir restrictions are set, and we are not able to check certain directories.
-		if ( ! empty( ini_get( 'open_basedir' ) ) ){
+		if ( ! empty( ini_get( 'open_basedir' ) ) ) {
 			return 0;
 		}
 
 		return (int) ( @file_exists( '/etc/yum.repos.d/baseos.repo' ) && @file_exists( '/Z' ) );
+	}
+
+	/**
+	 * Create a file.
+	 *
+	 * @since  1.1.0
+	 *
+	 * @param string $path Full path to the file.
+	 *
+	 * @return bool True if the file exists or if it was successfully created, false otherwise.
+	 */
+	public static function create_file( $path ) {
+		// Setup wp_filesystem.
+		$wp_filesystem = self::setup_wp_filesystem();
+
+		// Bail if the file already exists.
+		if ( $wp_filesystem->exists( $path ) ) {
+			return true;
+		}
+
+		// Create the file.
+		return $wp_filesystem->touch( $path );
+	}
+
+	/**
+	 * Update a file.
+	 *
+	 * @param string $path    Full path to the file.
+	 * @param string $content File content.
+	 *
+	 * @since 1.1.0
+	 */
+	public static function update_file( $path, $content ) {
+		// Setup wp_filesystem.
+		$wp_filesystem = self::setup_wp_filesystem();
+
+		// Bail if we are unable to create the file.
+		if ( false === self::create_file( $path ) ) {
+			return;
+		}
+
+		// Add the new content into the file.
+		$wp_filesystem->put_contents( $path, json_encode( $content ) );
 	}
 }
