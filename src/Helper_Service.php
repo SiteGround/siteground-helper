@@ -236,4 +236,30 @@ class Helper_Service {
 		// Add the new content into the file.
 		$wp_filesystem->put_contents( $path, json_encode( $content ) );
 	}
+
+	/**
+	 * Build config file content using the option values from database.
+	 *
+	 * @since  1.1.0
+	 *
+	 * @param  array $config_options Config options.
+	 *
+	 * @return array The config content.
+	 */
+	public static function build_config_content( $config_options ) {
+		// Init the data array.
+		$data = array();
+
+		// Loop through all options and add the value to the data array.
+		foreach ( $config_options as $key => $option ) {
+			// Get the option value.
+			$value = get_option( $option, 0 );
+
+			// Add the value to database. Only the plugin version needs to be a string.
+			$data[ $key ] = 'version' === $key ? $value : intval( $value );
+		}
+
+		// Return the data.
+		return $data;
+	}
 }
