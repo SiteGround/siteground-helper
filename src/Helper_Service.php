@@ -34,6 +34,10 @@ class Helper_Service {
 	 * @since  1.0.0
 	 */
 	public static function is_cron_disabled() {
+		if ( defined( 'SG_UNIX_CRON' ) && true == SG_UNIX_CRON ) {
+			return 0;
+		}
+
 		if ( defined( 'DISABLE_WP_CRON' ) && true == DISABLE_WP_CRON ) {
 			return 1;
 		}
