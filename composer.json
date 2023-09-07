@@ -1,5 +1,8 @@
 {
     "name": "siteground/siteground-helper",
+    "description": "Helper package used for Siteground wordpress plugins",
+    "homepage": "https://github.com/SiteGround/siteground-i18n",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "SiteGround_Helper\\": "src/"
